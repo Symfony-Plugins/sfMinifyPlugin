@@ -1,19 +1,14 @@
 <?php
-define('SF_ROOT_DIR',    realpath(dirname(__FILE__).'/..'));
-define('SF_APP',         'frontend');
-define('SF_ENVIRONMENT', 'prod');
-define('SF_DEBUG',       false);
- 
-require_once(SF_ROOT_DIR.DIRECTORY_SEPARATOR.'apps'.DIRECTORY_SEPARATOR.SF_APP.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'config.php');
+
+require_once(dirname(__FILE__).'/../config/ProjectConfiguration.class.php');
+
+$configuration = ProjectConfiguration::getApplicationConfiguration('frontend', 'prod', false); 
 
 /**
  * Add the location of Minify's "lib" directory to the include_path. In
  * production this could be done via .htaccess or some other method.
  */
-ini_set('include_path', 
-    SF_ROOT_DIR . '/plugins/sfMinifyPlugin/minify/lib'
-    . PATH_SEPARATOR . ini_get('include_path')
-);
+ini_set('include_path', $configuration->getRootDir() . '/plugins/sfMinifyPlugin/minify/lib' . PATH_SEPARATOR . ini_get('include_path'));
 
 /**
  * The Files controller only "knows" HTML, CSS, and JS files. Other files
