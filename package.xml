@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.5.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfMinifyPlugin</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>Integrate the minify library see http://code.google.com/p/minify/ into symfony</summary>
+ <description>Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads.</description>
+ <lead>
+  <name>Gordon Franke</name>
+  <user>gordon</user>
+  <email />
+  <active>yes</active>
+ </lead>
+ <date>2007-05-23</date>
+ <time>19:15:09</time>
+ <version>
+  <release>0.1.0</release>
+  <api>1.0.1</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+ <notes>first release</notes>
+ <contents>
+  <dir baseinstalldir="/sfMinifyPlugin" name="/">
+   <file baseinstalldir="/sfMinifyPlugin" md5sum="68ae912dac709509581e60fe97f978c0" name="lib/filter/sfMinifyFilter.class.php" role="php" />
+   <file baseinstalldir="/sfMinifyPlugin" md5sum="24ba944156cf8361d4b1c2b2dffb1585" name="lib/helper/SfMinifyHelper.php" role="php" />
+   <file baseinstalldir="/sfMinifyPlugin" md5sum="558f83c22fc3edde0eae43f656c28bc5" name="minify/HISTORY" role="data" />
+   <file baseinstalldir="/sfMinifyPlugin" md5sum="0060ca975470dece18ceff9179e12bcd" name="minify/LICENSE" role="data" />
+   <file baseinstalldir="/sfMinifyPlugin" md5sum="22dd2d696e582c7fc3c3823f7c63448f" name="minify/minify.php" role="php" />
+   <file baseinstalldir="/sfMinifyPlugin" md5sum="c5201eac3e47f473afc5d8f955637b6a" name="minify/README" role="data" />
+   <file baseinstalldir="/sfMinifyPlugin" md5sum="fd0e810233142ef8f917c24a0bb00ec7" name="minify/lib/jsmin.php" role="php" />
+   <file baseinstalldir="/sfMinifyPlugin" md5sum="afbf3a289b3ae34eec616a8b3c7f6099" name="minify/tools/doc.bat" role="data" />
+   <file baseinstalldir="/sfMinifyPlugin" md5sum="1034ee025eb25556ef965335f50e4cec" name="web/sfMinifyPlugin.php" role="php" />
+   <file baseinstalldir="/sfMinifyPlugin" md5sum="2e8e6da939b1f24ded2f161c23a44338" name="README" role="data" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.5.4</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.0.0</min>
+    <max>1.0.99999</max>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>1.0.1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>stable</api>
+   </stability>
+   <date>2007-05-23</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>first release</notes>
+  </release>
+ </changelog>
+</package>
