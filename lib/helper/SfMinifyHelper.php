@@ -12,7 +12,7 @@ function minify_get_javascripts($response, $minify)
 {
   if(!$minify) return get_javascripts();
 
-  $response->setParameter('javascripts_included', true, 'symfony/view/asset');
+  sfConfig::set('symfony.asset.javascripts_included', true);
 
   $already_seen = array();
   $minify_files = array();
@@ -81,7 +81,7 @@ function minify_get_stylesheets($response, $minify)
 {
   if(!$minify) return get_stylesheets();
 
-  $response->setParameter('stylesheets_included', true, 'symfony/view/asset');
+  sfConfig::set('symfony.asset.stylesheets_included', true);
 
   $already_seen = array();
 	$minify_files = array();

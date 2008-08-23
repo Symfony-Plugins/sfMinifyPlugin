@@ -37,11 +37,11 @@ class sfMinifyFilter extends sfFilter
     {
       sfLoader::loadHelpers(array('Tag', 'Asset', 'SfMinify'));
       $html = '';
-      if (!$response->getParameter('javascripts_included', false, 'symfony/view/asset'))
+      if (!sfConfig::get('symfony.asset.javascripts_included', false))
       {
         $html .= minify_get_javascripts($response, $this->getParameter('javascripts', true));
       }
-      if (!$response->getParameter('stylesheets_included', false, 'symfony/view/asset'))
+      if (!sfConfig::get('symfony.asset.stylesheets_included', false))
       {
         $html .= minify_get_stylesheets($response, $this->getParameter('stylesheets', true));
       }
@@ -52,7 +52,7 @@ class sfMinifyFilter extends sfFilter
       }
     }
 
-    $response->setParameter('javascripts_included', false, 'symfony/view/asset');
-    $response->setParameter('stylesheets_included', false, 'symfony/view/asset');
+    sfConfig::set('symfony.asset.javascripts_included', false);
+    sfConfig::set('symfony.asset.stylesheets_included', false);
   }
 }
