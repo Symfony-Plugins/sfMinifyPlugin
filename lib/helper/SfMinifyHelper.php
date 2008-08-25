@@ -16,9 +16,9 @@ function minify_get_javascripts($response, $minify)
 
   $already_seen = array();
   $minify_files = array();
-  foreach (array('first', '', 'last') as $position)
+  foreach ($response->getPositions() as $position)
   {
-    foreach ($response->getJavascripts($position) as $files)
+    foreach ($response->getJavascripts($position) as $files => $options)
     {
       if (!is_array($files))
       {
@@ -84,8 +84,8 @@ function minify_get_stylesheets($response, $minify)
   sfConfig::set('symfony.asset.stylesheets_included', true);
 
   $already_seen = array();
-	$minify_files = array();
-  foreach (array('first', '', 'last') as $position)
+  $minify_files = array();
+  foreach ($response->getPositions() as $position)
   {
     foreach ($response->getStylesheets($position) as $files => $options)
     {
