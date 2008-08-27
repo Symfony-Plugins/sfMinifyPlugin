@@ -55,7 +55,7 @@ if (isset($_GET['f']))
         Minify::useServerCache($minifyCachePath);
       }
 
-      Minify::serve('Files', array('files' => $files));
+      Minify::serve('Files', array('files' => $files, 'encodeOutput' => false));
       exit();
     }
   }
