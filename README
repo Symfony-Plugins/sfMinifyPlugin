@@ -36,13 +36,13 @@ Combines, minifies, and caches JavaScript and CSS files on demand to speed up pa
 
         [plain]
         # Combine and minify JavaScript and CSS with Minify.
-        RewriteRule ^minify/(.*\.(css|js))$ sfMinifyPlugin.php?f=/$1 [L,NC]  
+        RewriteRule ^minify/\d+/(.*\.(css|js))$ sfMinifyPlugin.php?f=/$1 [L,NC]  
 
     if you have run symfony on a subdirectory change it to
 
         [plain]
         # Combine and minify JavaScript and CSS with Minify.
-        RewriteRule ^minify/(.*\.(css|js))$ sfMinifyPlugin.php?f=/subdirectory/$1 [L,NC]  
+        RewriteRule ^minify/\d+/(.*\.(css|js))$ sfMinifyPlugin.php?f=/subdirectory/$1 [L,NC]  
 
 ### Helper
 
