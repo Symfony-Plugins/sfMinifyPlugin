@@ -53,7 +53,7 @@ function minify_get_javascripts()
   foreach($minify_files as $options => $files)
   {
     $options = unserialize($options);
-    $options['src'] = '/minify'.join($files, ',');
+    $options['src'] = '/minify/'.sfConfig::get('app_sfMinifyPlugin_asset_version').join($files, ',');
     $html   .= content_tag('script', '', $options)."\n";
   }
 
@@ -139,7 +139,7 @@ function minify_get_stylesheets()
   foreach($minify_files as $options => $files)
   {
     $options = unserialize($options);
-    $options['href'] = '/minify'.join($files, ',');
+    $options['href'] = '/minify/'.sfConfig::get('app_sfMinifyPlugin_asset_version').join($files, ',');
     $html .= tag('link', $options)."\n";
   }
 
