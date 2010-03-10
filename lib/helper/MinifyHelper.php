@@ -8,10 +8,12 @@
  *
  * @return string <script> tag
  */
-function minify_get_javascripts($response, $minify)
+function minify_get_javascripts()
 {
-  if(!$minify) return get_javascripts();
+  $jsSettings = sfConfig::get('app_sfMinifyPlugin_js');
+  if(!$jsSettings['enabled']) return get_javascripts();
 
+  $response = sfContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.javascripts_included', true);
 
   $already_seen = array();
@@ -51,7 +53,7 @@ function minify_get_javascripts($response, $minify)
   foreach($minify_files as $options => $files)
   {
     $options = unserialize($options);
-    $options['src'] = join($files, ',');
+    $options['src'] = '/minify'.join($files, ',');
     $html   .= content_tag('script', '', $options)."\n";
   }
 
@@ -77,10 +79,12 @@ function minify_include_javascripts()
  *
  * @return string <link> tags
  */
-function minify_get_stylesheets($response, $minify)
+function minify_get_stylesheets()
 {
-  if(!$minify) return get_stylesheets();
+  $cssSettings = sfConfig::get('app_sfMinifyPlugin_css');
+  if(!$cssSettings['enabled']) return get_stylesheets();
 
+  $response = sfContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.stylesheets_included', true);
 
   $already_seen = array();
@@ -135,7 +139,7 @@ function minify_get_stylesheets($response, $minify)
   foreach($minify_files as $options => $files)
   {
     $options = unserialize($options);
-    $options['href'] = join($files, ',');
+    $options['href'] = '/minify'.join($files, ',');
     $html .= tag('link', $options)."\n";
   }
 

@@ -6,45 +6,73 @@ Integrate the minify library see [http://code.google.com/p/minify/](http://code.
 
 Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads.
 
-## Usage
+## Installation ##
 
-  * add this to your ``.htaccess`` file
+  * Install the plugin (via a package)
+
+        symfony plugin:install sfMinifyPlugin
+
+  * Install the plugin (via a Subversion checkout)
+  
+        svn co http//svn.symfony-project.com/plugins/sfMinifyPlugin/trunk plugins/sfMinifyPlugin
+
+  * Activate the plugin in the `config/ProjectConfiguration.class.php`
+  
+        [php]
+        class ProjectConfiguration extends sfProjectConfiguration
+        {
+          public function setup()
+          {
+            $this->enablePlugins(array(
+              'sfMinifyPlugin',
+              '...'
+            ));
+          }
+        }
+
+  * Copy ``plugins/sfMinifyPlugin/web/sfMinifyPlugin.php`` to your ``web`` directory
+
+  * Add this to your ``.htaccess`` file
 
         [plain]
         # Combine and minify JavaScript and CSS with Minify.
-        RewriteRule ^(.*\.(css|js))$ ../plugins/sfMinifyPlugin/sfMinifyPlugin.php?f=/$1 [L,NC]  
+        RewriteRule ^minify/(.*\.(css|js))$ sfMinifyPlugin.php?f=/$1 [L,NC]  
 
     if you have run symfony on a subdirectory change it to
 
         [plain]
         # Combine and minify JavaScript and CSS with Minify.
-        RewriteRule ^(.*\.(css|js))$ ../plugins/sfMinifyPlugin/sfMinifyPlugin.php?f=/subdirectory/$1 [L,NC]  
+        RewriteRule ^minify/(.*\.(css|js))$ sfMinifyPlugin.php?f=/subdirectory/$1 [L,NC]  
 
-  * copy ``plugins/sfMinifyPlugin/web/sfMinifyPlugin.php`` to your ``web`` directory and edit the project configuration
+### Helper
 
-### Filter or Helper
-
-you can activate minify over the filter or with the helpers
-
-  * change the common filter in your ``filters.yml`` to
-
-        [plain]
-        common:
-          class: sfMinifyFilter   # Filter class
-          param:
-            javascripts:        true
-            stylesheets:        true
-
-  * or add/change the helper in your layout file (default ``layout.php``) to
+you can activate minify over with the helpers simple add/change the helper in your layout file (default ``layout.php``) to
 
         [php]
-        use_helper('SfMinify');
+        use_helper('Minify');
         minify_include_javascript();
         minify_include_stylesheets();
 
 ### Configuration
 
-you can enable and disable javascript or stylesheet minify by setting the params in ``filter.yml`` by default both types will be minified
+Enable the plugin features through app.yml. You should enable the plugin only in the production and staging environments. This is because the plugin overhead is noticeable in the development environment, and because the plugin strips comments and whitespaces from your script and CSS files, making editions harder. So keep the plugin disabled in the development environment. A typical plugin setup would look like this:
+
+        [yaml]
+        # in apps/frontend/config/app.yml
+        dev:
+          sfMinifyPlugin:
+            js:
+              enabled:       false    # disable minify for js files in development
+            css:
+              enabled:       false    # disable minify for css files in development
+ 
+        all:
+          sfMinifyPlugin:
+            asset_version:   1        # key to the asset version (see below)
+            js:
+              enabled:       true     # activate minify for js files
+            css:
+              enabled:       true     # activate minify for css files
 
 #### Compression
 
